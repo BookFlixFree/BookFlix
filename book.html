@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookflix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="navbar">
+        <h1 class="title">BookFlix</h1>
+        <input type="text" id="search-bar" placeholder="Search for a book...">
+        <div class="auth-links">
+            <a href="signin.html">Sign In</a>
+        </div>
+    </div>
+
+    <div class="genre-section">
+        <div class="genre">
+            <h2>Horror</h2>
+            <div class="book-row" id="horror-books"></div>
+            <a href="#" class="see-more">See More</a>
+        </div>
+        <div class="genre">
+            <h2>Comedy</h2>
+            <div class="book-row" id="comedy-books"></div>
+            <a href="#" class="see-more">See More</a>
+        </div>
+        <div class="genre">
+            <h2>Thriller</h2>
+            <div class="book-row" id="thriller-books"></div>
+            <a href="#" class="see-more">See More</a>
+        </div>
+        <div class="genre">
+            <h2>Romance</h2>
+            <div class="book-row" id="romance-books"></div>
+            <a href="#" class="see-more">See More</a>
+        </div>
+    </div>
+
+    <script>
+       
+        document.getElementById('search-bar').addEventListener('input', function(event) {
+            const query = event.target.value.toLowerCase();
+            const books = document.querySelectorAll('.book-card');
+            books.forEach(book => {
+                const title = book.querySelector('p').textContent.toLowerCase();
+                book.style.display = title.includes(query) ? 'block' : 'none';
+            });
+        });
+       const books = {
+            Horror: [
+                { title: "Dracula", cover: "https://www.jarir.com/cdn-cgi/image/fit=contain,width=auto,height=auto,quality=85,metadata=none/https://ak-asset.jarir.com/akeneo-prod/asset/m1images/4/7/478199.jpg", link: "https://www.bramstoker.org/pdf/novels/05dracula.pdf" },
+                { title: "Frankenstein", cover: "https://cdn.shopify.com/s/files/1/0625/6679/3413/files/Frankenstein_baa38148-6b89-4e82-89e3-db5ecd028b8e.jpg?v=1716712361", link: "https://ia803405.us.archive.org/12/items/shelley-1888-frankenstein/Shelley_1888_Frankenstein.pdf" },
+                { title: "Indian Ghost Stories", cover: "https://iili.io/3H2237f.jpg", link: "https://archive.org/download/in.ernet.dli.2015.54744/2015.54744.Indian-Ghost-Stories.pdf" }
+            ],
+            Comedy: [
+                { title: "The Importance of Being Earnest", cover: "https://www.crossword.in/cdn/shop/products/91r5G9xJZUL_360x@2x.jpg?v=1685185774", link: "https://upload.wikimedia.org/wikipedia/commons/5/50/The_Importance_of_Being_Earnest_playscript_A4_pdf.pdf" },
+                { title: "Three Men in a Boat", cover: "https://cdn.kobo.com/book-images/1f902aea-bc22-4a9b-9e28-0a7c6614b001/353/569/90/False/three-men-in-a-boat-102.jpg", link: "https://ia801400.us.archive.org/4/items/in.ernet.dli.2015.264771/2015.264771.Three-Men.pdf" }
+            ],
+            Thriller: [
+                { title: "The Thirty-Nine Steps", cover: "https://ia601905.us.archive.org/22/items/the-thirty-nine-steps-by-john-buchan/The%20Thrity-Nine%20Stepa.jpg?cnt=0", link: "https://dn720506.ca.archive.org/0/items/thirtyninesteps00buch_2/thirtyninesteps00buch_2.pdf" },
+                { title: "The Secret Agent", cover: "https://cdn.kobo.com/book-images/18fc24e6-4e03-441e-ad89-e98b911c0279/353/569/90/False/the-secret-agent-22.jpg", link: "https://ia601502.us.archive.org/34/items/in.ernet.dli.2015.226023/2015.226023.The-Secret.pdf" }
+            ],
+            Romance: [
+                { title: "Pride and Prejudice", cover: "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/249/2024/04/25131246/sGjIvtVvTlWnia2zfJfHz81pZ9Q.jpg", link: "https://ia800609.us.archive.org/7/items/prideprejudice00aust/prideprejudice00aust.pdf" },
+                { title: "Jane Eyre", cover: "https://m.media-amazon.com/images/I/31yiO3p7x6L._SY445_SX342_.jpg", link: "https://ia601305.us.archive.org/24/items/JaneEyre-CharlotteBronte/jane_eyre.pdf" }
+            ]
+        };
+
+        Object.keys(books).forEach(genre => {
+            const genreRow = document.getElementById(`${genre.toLowerCase()}-books`);
+
+            genreRow.innerHTML = books[genre].map(book => `
+                <div class="book-card">
+                    <img src="${book.cover}" alt="${book.title}">
+                    <p>${book.title}</p>
+                    <a href="${book.link}" target="_blank">Read</a>
+                </div>
+            `).join('');
+        });
+    </script>
+
+    <style>
+         #search-bar {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 300px;
+            margin-left: 20px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #search-bar:focus {
+            border-color: red;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .navbar .title {
+            font-size: 2rem;
+            margin: 0;
+            color: white;
+            font-weight: 800;
+        }
+        .auth-links a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            
+        }
+        .genre-section {
+            padding: 0 10px;
+        }
+        .genre {
+            margin-bottom: 30px;
+        }
+        .genre h2 {
+            font-size: 1.8rem;
+            margin: 0 0 15px;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+        }
+        .book-row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            padding-bottom: 10px;
+        }
+        .book-card {
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: #333;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .book-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+        .book-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .book-card p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .book-card a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .book-card a:hover {
+            background-color: darkred;
+        }
+        .see-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: red;
+
+
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .see-more:hover {
+            color: darkred;
+        }
+    </style>
+</body>
+</html>
