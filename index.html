@@ -40,7 +40,7 @@
     </div>
 
     <script>
-       
+        document.addEventListener('contextmenu', event => event.preventDefault());
         document.getElementById('search-bar').addEventListener('input', function(event) {
             const query = event.target.value.toLowerCase();
             const books = document.querySelectorAll('.book-card');
