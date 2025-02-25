@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-     <!-- © 2024 BookFlix. All rights reserved. Unauthorized use is prohibited. -->
+    <!-- © 2024 BookFlix. All rights reserved. Unauthorized use is prohibited. -->
+
     <div class="navbar">
         <h1 class="title">BookFlix</h1>
         <input type="text" id="search-bar" placeholder="Search for a book...">
@@ -37,10 +38,16 @@
             <div class="book-row" id="romance-books"></div>
             <a href="#" class="see-more">See More</a>
         </div>
+        <div class="genre">
+            <h2>Adventure Fiction</h2>
+            <div class="book-row" id="adventure-books"></div>
+            <a href="#" class="see-more">See More</a>
+        </div>
     </div>
 
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
+
         document.getElementById('search-bar').addEventListener('input', function(event) {
             const query = event.target.value.toLowerCase();
             const books = document.querySelectorAll('.book-card');
@@ -66,6 +73,10 @@
             Romance: [
                 { title: "Pride and Prejudice", cover: "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/249/2024/04/25131246/sGjIvtVvTlWnia2zfJfHz81pZ9Q.jpg", link: "https://ia800609.us.archive.org/7/items/prideprejudice00aust/prideprejudice00aust.pdf" },
                 { title: "Jane Eyre", cover: "https://m.media-amazon.com/images/I/31yiO3p7x6L._SY445_SX342_.jpg", link: "https://ia601305.us.archive.org/24/items/JaneEyre-CharlotteBronte/jane_eyre.pdf" }
+            ],
+            Adventure: [
+                { title: "Animal Farm", cover: "https://www.noor-book.com/publice/covers_cache_webp/2/7/1/f/ccac023abb71f5e7d04100de1cc2c18a.png.webp", link: "https://dn790000.ca.archive.org/0/items/animalfarm00orwe_0/animalfarm00orwe_0.pdf" },
+                { title: "1984", cover: "https://img1.od-cdn.com/ImageType-100/5835-1/%7BEC168C5F-687A-4D0D-895F-C3D5FB208C00%7DImg100.jpg", link: "https://rauterberg.employee.id.tue.nl/lecturenotes/DDM110%20CAS/Orwell-1949%201984.pdf" }
             ]
         };
 
